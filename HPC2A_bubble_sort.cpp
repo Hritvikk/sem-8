@@ -4,9 +4,9 @@
 using namespace std;
 
 void bubble(int arr[],int n){
-    for(int i=0;i<n-1;i++){
-        for(int j=0;j<n-i-1;j++){
-            if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]);
+    for(int i=0;i<n;i++){
+        for(int j=1;j<n-i;j++){
+            if(arr[j-1]>arr[j]) swap(arr[j],arr[j-1]);
         }
     }
 }
@@ -16,7 +16,7 @@ void pBubble(int arr[],int n){
         //Odd
         #pragma omp for
         for(int j=1;j<n;j+=2){
-            if(arr[j]<arr[j-1]) swap(arr[j],arr[j-1]);
+            if(arr[j-1]>arr[j]) swap(arr[j],arr[j-1]);
         }
         //Synchronize
          #pragma omp barrier
@@ -24,7 +24,7 @@ void pBubble(int arr[],int n){
         //Even
         #pragma omp for
         for(int j=2;j<n;j+=2){
-            if(arr[j]<arr[j-1]) swap(arr[j],arr[j-1]);
+            if(arr[j-1]>arr[j]) swap(arr[j],arr[j-1]);
         }
     }
 
